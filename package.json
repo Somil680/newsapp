@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-router-dom": "^6.4.1",
+    "react-top-loading-bar": "^2.3.1"
+  }
+}
