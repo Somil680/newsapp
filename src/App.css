@@ -2,9 +2,9 @@
     width: 96px;
       height: 65px;
 }
-/* .col-md-4 {
- 
-} */
+.bg-danger {
+  background-color: #c13c06 !important;
+}
 .card-img-top {
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
