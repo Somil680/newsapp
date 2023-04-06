@@ -43,24 +43,56 @@ const News = (props) => {
        updateNews();
     }, [])
    
-   
+
     const updateNews = async () => {
   props.setProgress(10);
-  const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=83f8f6b2db95495b8d0512d272a2efc9&page=${page}&pageSize=${props.pageSize}`;
+  const url = `https://newsapi.org/v2/top-headlines`;
+  const params = {
+    country: props.country,
+    category: props.category,
+    apiKey: '83f8f6b2db95495b8d0512d272a2efc9',
+    page: page,
+    pageSize: props.pageSize
+  };
   setLoading(true);
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url, {
+      headers: {
+        'Accept': 'application/json'
+      },
+      params: params
+    });
     props.setProgress(30);
     const parsedData = response.data;
     props.setProgress(70);
-    setArticles(parsedData.articles);
-    setTotalResults(parsedData.totalResults);
+    setArticles(parsedData.articles)
+    setTotalResults(parsedData.totalResults)
+    setLoading(false)
+    props.setProgress(100);
   } catch (error) {
     console.error(error);
   }
-  setLoading(false);
-  props.setProgress(100);
-    };
+};
+
+
+   
+//     const updateNews = async () => {
+//   props.setProgress(10);
+//   const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=83f8f6b2db95495b8d0512d272a2efc9&page=${page}&pageSize=${props.pageSize}`;
+//   setLoading(true);
+//   try {
+//     const response = await axios.get(url);
+//     props.setProgress(30);
+//     const parsedData = response.data;
+//     props.setProgress(70);
+//     setArticles(parsedData.articles);
+//     setTotalResults(parsedData.totalResults);
+//   } catch (error) {
+//     console.error(error);
+//   }
+//   setLoading(false);
+//   props.setProgress(100);
+//     };
 
 
 const fetchMoreData = async () => {
