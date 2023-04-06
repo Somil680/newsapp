@@ -24,19 +24,6 @@ const News = (props) => {
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
-    // const updateNews = async () => {
-    //     props.setProgress(10);
-    //     const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=83f8f6b2db95495b8d0512d272a2efc9&page=${page}&pageSize=${props.pageSize}`;
-    //     setLoading(true)
-    //     const data = await fetch(url);
-    //     props.setProgress(30);
-    //     const parsedData = await data.json()
-    //     props.setProgress(70);
-    //     setArticles(parsedData.articles)
-    //     setTotalResults(parsedData.totalResults)
-    //     setLoading(false)
-    //     props.setProgress(100);
-    // }
     
     useEffect(() => {
        document.title = `${capitalizeFirstLetter(props.category)} - NewsFeedly`;
@@ -75,31 +62,24 @@ const News = (props) => {
 };
 
 
-   
-//     const updateNews = async () => {
-//   props.setProgress(10);
-//   const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=83f8f6b2db95495b8d0512d272a2efc9&page=${page}&pageSize=${props.pageSize}`;
-//   setLoading(true);
-//   try {
-//     const response = await axios.get(url);
-//     props.setProgress(30);
-//     const parsedData = response.data;
-//     props.setProgress(70);
-//     setArticles(parsedData.articles);
-//     setTotalResults(parsedData.totalResults);
-//   } catch (error) {
-//     console.error(error);
-//   }
-//   setLoading(false);
-//   props.setProgress(100);
-//     };
-
-
 const fetchMoreData = async () => {
-  const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=83f8f6b2db95495b8d0512d272a2efc9&page=${page + 1}&pageSize=${props.pageSize}`;
+//   const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=83f8f6b2db95495b8d0512d272a2efc9&page=${page + 1}&pageSize=${props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines`;
+  const params = {
+    country: props.country,
+    category: props.category,
+    apiKey: '83f8f6b2db95495b8d0512d272a2efc9',
+    page: page+1,
+    pageSize: props.pageSize
+  };
   setPage(page + 1);
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url, {
+      headers: {
+        'Accept': 'application/json'
+      },
+      params: params
+    });
     const parsedData = response.data;
     setArticles(articles.concat(parsedData.articles));
     setTotalResults(parsedData.totalResults);
@@ -108,17 +88,9 @@ const fetchMoreData = async () => {
   }
 };
 
-    // const fetchMoreData = async () => {
 
-    //     const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=83f8f6b2db95495b8d0512d272a2efc9&page=${page + 1}&pageSize=${props.pageSize}`;
-       
-    //     setPage(page + 1)
 
-    //     let data = await fetch(url);
-    //     let parsedData = await data.json()
-    //     setArticles(articles.concat(parsedData.articles))
-    //     setTotalResults(parsedData.totalResults)
-    // };
+
     const getHeadingView = () => (
         <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px', color: 'white' }}>Top {capitalizeFirstLetter(props.category)} Headlines</h1>
     )
