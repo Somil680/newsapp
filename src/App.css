@@ -5,16 +5,19 @@
 .bg-danger {
   background-color: #c13c06 !important;
 }
+.nav-image{
+  width: 57px;
+}
 .card-img-top {
-  border-top-left-radius: calc(0.25rem - 1px);
+  /* border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
-  height: 121px;
-  box-shadow: 2px 1px 6px 0px black;
+  height: 150px;
+  box-shadow: 2px 1px 6px 0px black; */
 }
 .card-body {
-  flex: 1 1 auto;
+  /* flex: 1 1 auto;
   padding: 1rem 1rem;
-  box-shadow: 2px 1px 6px 0px black;
+  box-shadow: 2px 1px 6px 0px black; */
  }
  body{
   background-color:#212529;
